@@ -1,0 +1,17 @@
+{% extends 'frontend.html' %}
+
+<!-- Title on the browser tab -->
+{% block title %} Backend {% endblock title %}
+
+<!-- Button on navbar -->
+{% block nav-btn %}
+<a href="#" class="btn btn-outline-danger text-light border-light btn-sm" id="btn-nav">Logout</a>
+{% endblock nav-btn %}
+
+<!-- Footer (optopnal - not necessary) -->
+{% block footer %} style="color: #ff7f7f" {% endblock footer %}
+
+<!-- Page content -->
+{% block content %}
+<h1 class="container text-danger" style="width: 80%; position: absolute; top: 50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); text-align: center;">BACKEND</h1>
+{% endblock content %}

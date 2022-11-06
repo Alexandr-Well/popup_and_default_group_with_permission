@@ -7,6 +7,8 @@ from django.views.generic import CreateView
 from user.forms import RegistrationUserForm
 from django.contrib.auth import login as auth_login, logout, login, authenticate
 
+from user.models import CustomUser
+
 
 class RegisterUser(CreateView):
     """ форма для создания юзера
@@ -15,10 +17,6 @@ class RegisterUser(CreateView):
     form_class = RegistrationUserForm
     template_name = "user/add_user.html"
     success_url = reverse_lazy("main")
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
 
     def form_valid(self, form):
         user = form.save()
@@ -66,3 +64,13 @@ def logout_user(request):
     """
     logout(request)
     return redirect('login')
+
+
+def validate_username(request):
+    """Проверка доступности логина"""
+    username = request.GET.get('username', None)
+    print(request.GET)
+    response = {
+        'is_taken': CustomUser.objects.filter(username__iexact=username).exists()
+    }
+    return JsonResponse(response)

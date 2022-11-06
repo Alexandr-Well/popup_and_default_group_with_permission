@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 class RegistrationUserForm(UserCreationForm):
     """форма регистрации пользователя"""
-    username = forms.CharField(label="Login name", widget=forms.TextInput(attrs={'class': "form-input"}))
+    username = forms.CharField(label="Login name", widget=forms.TextInput(attrs={'class': "form-input", 'id': 'id_usr'}))
     email = forms.EmailField(max_length=100, label="Email", widget=forms.TextInput(attrs={'class': "form-input"}))
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={'class': "form-input"}))
     password2 = forms.CharField(label="Again Password", widget=forms.PasswordInput(attrs={'class': "form-input"}))

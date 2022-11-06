@@ -1,15 +1,8 @@
-<title>Registration </title>
-<div class="page-user-container">
-<h1>
-    Register New User
-</h1>
-
+{% extends "main.html" %}
+{% block content %}
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {% for elem in form %}
-    <p><label class="example" for="{{elem.id_for_label}}">{{elem.label}}: </label>{{elem}}</p>
-    <div>{{elem.errors}}</div>
-    {% endfor %}
+    {{form.as_p}}
     <button type="submit">submit</button>
 </form>
-</div>
+{% endblock %}

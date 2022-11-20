@@ -1,4 +1,29 @@
 $(document).ready(function () {
+    $('#test_btn').click(function () {
+        console.log('aaa')
+        // создаем AJAX-вызов
+        $.ajax({
+            data: $(this).serialize(), // получаяем данные формы
+            url: "http://127.0.0.1:8000/get_user/",
+            // если успешно, то
+            success: function (response) {
+
+                $.each(response.user, function (index, value){
+                    console.log(value.username)
+                    tag = "<div>" + value.username + "</div>"
+                    $('#output').append(tag)
+                });
+
+            },
+            // если ошибка, то
+            error: function (response) {
+                // предупредим об ошибке
+                console.log(response.responseJSON)
+            }
+        });
+        return false;
+    });
+
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {

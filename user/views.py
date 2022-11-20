@@ -69,7 +69,6 @@ def logout_user(request):
 def validate_username(request):
     """Проверка доступности логина"""
     username = request.GET.get('username', None)
-    print(request.GET)
     response = {
         'is_taken': CustomUser.objects.filter(username__iexact=username).exists()
     }

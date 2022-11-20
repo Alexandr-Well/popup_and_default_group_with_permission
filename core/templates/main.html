@@ -3,9 +3,17 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <div>{{ request.user.username }}</div>
 <a href="{% url 'login' %}" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+<br>
+<button type="submit" id="test_btn">test</button>
+<div id="output"></div>
 {% for obj in object_list %}
 <p>{{obj}}</p>
 {% endfor %}
+<div>{{users}}</div>
+<form method="get" action="{% url 'get_all_user2' %}">
+    <button type="submit">submit</button>
+</form>
+<div>{{users}}</div>
 {% include 'user/user_auth.html' %}
 {% block content %}
 {% endblock %}

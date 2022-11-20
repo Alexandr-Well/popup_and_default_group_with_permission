@@ -16,7 +16,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from core.views import PostView
+from core.views import PostView, get_all_user, GetAllUser
 from user.views import RegisterUser, LoginUser, logout_user, validate_username
 
 urlpatterns = [
@@ -26,6 +26,9 @@ urlpatterns = [
     path('registration/', RegisterUser.as_view(), name="registration"),
     path('login/', LoginUser.as_view(), name="login"),
     path('logout/', logout_user, name="logout"),
-    path('validate_username', validate_username, name='validate_username')
+    path('validate_username/', validate_username, name='validate_username'),
+    path('get_user/', get_all_user, name='get_all_user'),
+    path('get_user2/', GetAllUser.as_view(), name='get_all_user2'),
+
 
 ]

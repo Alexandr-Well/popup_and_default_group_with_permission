@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    window.console.log($('#test_btn'))
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -38,6 +39,33 @@ $(document).ready(function () {
         $.ajax({
             data: $(this).serialize(), // получаяем данные формы
             url: "{% url 'validate_username' %}",
+            // если успешно, то
+            success: function (response) {
+                if (response.is_taken == true) {
+                    window.console.log(response)
+                    $('#id_usr').removeClass('is-valid').addClass('is-invalid');
+                    $('#id_usr').after('Это имя пользователя недоступно!')
+                }
+                else {
+                    $('#id_usr').removeClass('is-invalid').addClass('is-valid');
+                    $('#usernameError').remove();
+                }
+            },
+            // если ошибка, то
+            error: function (response) {
+                // предупредим об ошибке
+                console.log(response.responseJSON)
+            }
+        });
+        return false;
+    });
+    console.log($('#test_btn'))
+    $('#test_btn').click(function () {
+        console.log('aaa')
+        // создаем AJAX-вызов
+        $.ajax({
+            data: $(this).serialize(), // получаяем данные формы
+            url: "{% url 'get_all_use' %}",
             // если успешно, то
             success: function (response) {
                 if (response.is_taken == true) {
